@@ -1,20 +1,34 @@
 let myLeads = []
 let inputBtn = document.querySelector("#input-btn")
+let deleteBtn = document.querySelector("#delete-btn")
 let inputEl = document.querySelector("#input-el")
 let ulEl = document.querySelector("#ul-el")
 
+let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+if(leadsFromLocalStorage){
+    myLeads = leadsFromLocalStorage
+    render(myLeads)
+}    
+
 inputBtn.addEventListener("click", function(){
     myLeads.push(inputEl.value) //.value will give whatever is inside input element
-    renderLeads()
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    render(myLeads)
 })
 
-function renderLeads(){
+deleteBtn.addEventListener("dblclick", function(){
+    myLeads = []
+    localStorage.clear()
+    ulEl.innerHTML = ""
+})
+
+function render(leads){
     let listItems = ""
-    for(let i = 0; i < myLeads.length; i++){
+    for(let i = 0; i < leads.length; i++){
         // using string template
         listItems+=
         `<li>
-            <a href = '${myLeads[i]}' target = '_blank'>${myLeads[i]}</a>
+            <a href = '${leads[i]}' target = '_blank'>${leads[i]}</a>
         </li>`
         // create element
         // set text content

@@ -23,10 +23,16 @@ button{
     border-radius: 4px;
 }
 
+#delete-btn{
+    background: white;
+    color: #5f9341;
+    border: 1px solid #5f9341;
+}
+
 ul{
     margin-top: 30px;
     list-style: none;
-    padding-left: 15px;
+    padding-left: 2px;
 }
 
 li{
